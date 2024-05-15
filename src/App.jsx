@@ -1,8 +1,20 @@
+import Form from "./components/Form";
+import Todos from "./components/Todos";
 
 function App() {
   return (
+
     <>
-    <h1 className="text-red-500">We are going to create a todo app list...</h1>
+      <div className="border-2 border-red-600">
+        <div className="bg-yellow-300 py-5 px-8">
+
+          <Form />
+        </div>
+
+        <div>
+          <Todos />
+        </div>
+      </div>
     </>
   )
 }
