@@ -32,6 +32,7 @@ function App() {
 
   useEffect(() => {
     const storedTodos = JSON.parse(localStorage.getItem("todos_storage"));
+    console.log("storedTodos : " + storedTodos);
     if(storedTodos) {
       setTodos(storedTodos);
     }
