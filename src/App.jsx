@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Form from "./components/Form";
 import Todos from "./components/Todos";
 import TodoContext from "./context/TodoContext";
@@ -29,6 +29,17 @@ function App() {
   const toggleCompleteTodo = (id) => {
     setTodos((prevTodos) => prevTodos.map(todo => todo.id === id ? { ...todo, isCompleted: !todo.isCompleted } : todo));
   }
+
+  useEffect(() => {
+    const storedTodos = JSON.parse(localStorage.getItem("todos_storage"));
+    if(storedTodos) {
+      setTodos(storedTodos);
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem("todos_storage", JSON.stringify(todos));
+  }, [todos]);
 
   return (
 
