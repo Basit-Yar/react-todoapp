@@ -26,14 +26,14 @@ function App() {
     setTodos((prev) => prev.filter(todo => todo.id !== id));
   }
 
+
   const toggleCompleteTodo = (id) => {
     setTodos((prevTodos) => prevTodos.map(todo => todo.id === id ? { ...todo, isCompleted: !todo.isCompleted } : todo));
   }
 
   useEffect(() => {
     const storedTodos = JSON.parse(localStorage.getItem("todos_storage"));
-    console.log("storedTodos : " + storedTodos);
-    if(storedTodos) {
+    if(storedTodos && storedTodos.length > 0) { // you can only give this condition --> storedTodos.length > 0
       setTodos(storedTodos);
     }
   }, []);
