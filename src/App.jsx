@@ -15,7 +15,7 @@ function App() {
     // setTodos( (previous) => [...todos, todo]);
     // 👆 Note : well, I have fullfilled the above requirement and previous is just a object which has all the todo that are stored in todos so for this we use the spread operator to store the individual todo and in the last which we are getting --> todo..! But there is a mistake in this code we can't pass the todo directly.. umm..Why ? because if you see the TodoContext.js so this is an object so we can do it in this way...
 
-    setTodos((prev) => [...prev, {id:Date.now(), ...todo}]);
+    setTodos((prev) => [...prev, { id: Date.now(), ...todo }]);
   }
 
   const updateTodo = (id, todo) => {
@@ -26,9 +26,13 @@ function App() {
     setTodos((prev) => prev.filter(todo => todo.id !== id));
   }
 
+  const toggleCompleteTodo = (id) => {
+    setTodos((prevTodos) => prevTodos.map(todo => todo.id === id ? { ...todo, isCompleted: !todo.isCompleted } : todo));
+  }
+
   return (
 
-    <TodoContext.Provider value={{todos, addTodo, updateTodo, deleteTodo, toggleCompleteTodo}}>
+    <TodoContext.Provider value={{ todos, addTodo, updateTodo, deleteTodo, toggleCompleteTodo }}>
       <div className="border-2 border-red-600">
         <div className="bg-yellow-200 py-5 px-8 sticky left-0 top-0">
 
