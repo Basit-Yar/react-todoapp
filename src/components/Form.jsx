@@ -9,7 +9,7 @@ function Form() {
 
     const addTask = () => {
         addTodo({task: task, isCompleted : false});
-        console.log("clicked")
+        setTask("");
     }
 
 
