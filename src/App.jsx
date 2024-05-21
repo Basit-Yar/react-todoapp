@@ -52,7 +52,11 @@ function App() {
         </div>
 
         <div className="bg-violet-300 py-5 md:px-8 flex flex-wrap justify-center">
-          
+          {todos.map((todo) => {
+            return (
+              <Todos todo={todo}/>
+            )
+          })}
         </div>
       </div>
     </ TodoContext.Provider>
