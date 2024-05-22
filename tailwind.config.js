@@ -7,7 +7,8 @@ export default {
   theme: {
     extend: {
       screens : {
-        'xsm' : {'max' : '420px'}
+        // 'csm' : {'max' : '420px'}
+        'c-sm' : {'max' : '564px'} // this is custom size which I have introduced it means this will apply when the size of screen is less than or equal to 564px.
       }
     },
   },
