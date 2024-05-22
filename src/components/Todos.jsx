@@ -29,11 +29,9 @@ export default function Todos({ todo }) {
     const a = () => {
         if (isEditAble) {
             saveUpdatedTodo();
-            console.log("save it")
             console.log(edittedTodoTask)
         } else {
             editTodo();
-            console.log("edit it")
             console.log(edittedTodoTask)
         }
     }
@@ -47,12 +45,10 @@ export default function Todos({ todo }) {
                     >
                         {todo.task}
                     </p>
-                    {/* <p contentEditable={true}>{todo.task}</p> */}
                 </div>
                 <div className="flex justify-around items-center pt-2">
                     <button
                         className=""
-                        // value={}
                         onClick={a}
                         disabled={isTaskCompleted}
                     >
