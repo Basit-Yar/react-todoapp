@@ -8,7 +8,7 @@ import DeleteModal from "./components/DeleteModal";
 function App() {
 
   const [todos, setTodos] = useState([]);
-  const [deleteModalView, setDeleteModalView] = useState(false);
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [confirmDelete, setConfirmDelete] = useState(false);
   const [deleteTodoId, setDeleteTodoId] = useState(null);
 
@@ -29,21 +29,17 @@ function App() {
   }
 
   const deleteTodo = (id) => {
-    setDeleteModalView(true);
+    setIsDeleteModalOpen(true);
     setDeleteTodoId(id);
   }
 
   const confirmDeleteInfo = (isConfirm) => {
     setConfirmDelete(isConfirm);
-    setDeleteModalView(false);
+    setIsDeleteModalOpen(false);
     if (isConfirm && deleteTodoId !== null){
       setTodos((prev) => prev.filter(todo => todo.id != deleteTodoId))
     }
     setDeleteTodoId(null);
-    // if(confirmDelete) {
-    // 
-    // setTodos((prev) => prev.filter(todo => todo.id !== id));
-    // }
   }
 
 
@@ -81,7 +77,7 @@ function App() {
       </div>
       <DeleteContext.Provider value={{ confirmDeleteInfo }}>
 
-        {deleteModalView && <DeleteModal />}
+        {isDeleteModalOpen && <DeleteModal />}
 
       </ DeleteContext.Provider>
     </ TodoContext.Provider>
