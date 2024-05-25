@@ -7,15 +7,11 @@ import DeleteModal from "./components/DeleteModal";
 
 function App() {
 
+  const [todos, setTodos] = useState([]);
   const [deleteModalView, setDeleteModalView] = useState(false);
   const [confirmDelete, setConfirmDelete] = useState(false);
+  const [deleteTodoId, setDeleteTodoId] = useState(null);
 
-  const confirmDeleteInfo = (isConfirm) => {
-    setDeleteModalView(false);
-    setConfirmDelete(isConfirm);
-  }
-
-  const [todos, setTodos] = useState([]);
   // here you have to keep the same name which you have defined in the TodoContext.js then only the fuctionality work otherwise it won't wrok! yeh aapko same name rakhna hai tabhi usme iski functionality jayegi...
   const addTodo = (todo) => {
 
@@ -34,10 +30,20 @@ function App() {
 
   const deleteTodo = (id) => {
     setDeleteModalView(true);
-    if(confirmDelete) {
+    setDeleteTodoId(id);
+  }
 
-      setTodos((prev) => prev.filter(todo => todo.id !== id));
+  const confirmDeleteInfo = (isConfirm) => {
+    setConfirmDelete(isConfirm);
+    setDeleteModalView(false);
+    if (isConfirm && deleteTodoId !== null){
+      setTodos((prev) => prev.filter(todo => todo.id != deleteTodoId))
     }
+    setDeleteTodoId(null);
+    // if(confirmDelete) {
+    // 
+    // setTodos((prev) => prev.filter(todo => todo.id !== id));
+    // }
   }
 
 
@@ -73,7 +79,7 @@ function App() {
           })}
         </div>
       </div>
-      <DeleteContext.Provider value={{confirmDeleteInfo}}>
+      <DeleteContext.Provider value={{ confirmDeleteInfo }}>
 
         {deleteModalView && <DeleteModal />}
 
