@@ -2,8 +2,18 @@ import { useEffect, useState } from "react";
 import Form from "./components/Form";
 import Todos from "./components/Todos";
 import TodoContext from "./context/TodoContext";
+import DeleteContext from "./context/DeleteContext";
+import DeleteModal from "./components/DeleteModal";
 
 function App() {
+
+  const [deleteModalView, setDeleteModalView] = useState(false);
+  const [confirmDelete, setConfirmDelete] = useState(false);
+
+  const confirmDeleteInfo = (isConfirm) => {
+    setDeleteModalView(false);
+    setConfirmDelete(isConfirm);
+  }
 
   const [todos, setTodos] = useState([]);
   // here you have to keep the same name which you have defined in the TodoContext.js then only the fuctionality work otherwise it won't wrok! yeh aapko same name rakhna hai tabhi usme iski functionality jayegi...
@@ -23,7 +33,11 @@ function App() {
   }
 
   const deleteTodo = (id) => {
-    setTodos((prev) => prev.filter(todo => todo.id !== id));
+    setDeleteModalView(true);
+    if(confirmDelete) {
+
+      setTodos((prev) => prev.filter(todo => todo.id !== id));
+    }
   }
 
 
@@ -33,7 +47,7 @@ function App() {
 
   useEffect(() => {
     const storedTodos = JSON.parse(localStorage.getItem("todos_storage"));
-    if(storedTodos && storedTodos.length > 0) { // you can only give this condition --> storedTodos.length > 0
+    if (storedTodos && storedTodos.length > 0) { // you can only give this condition --> storedTodos.length > 0
       setTodos(storedTodos);
     }
   }, []);
@@ -54,11 +68,16 @@ function App() {
         <div className="bg-violet-300 py-5 md:px-8 flex flex-wrap justify-center">
           {todos.map((todo) => {
             return (
-              <Todos todo={todo}/>
+              <Todos todo={todo} />
             )
           })}
         </div>
       </div>
+      <DeleteContext.Provider value={{confirmDeleteInfo}}>
+
+        {deleteModalView && <DeleteModal />}
+
+      </ DeleteContext.Provider>
     </ TodoContext.Provider>
   )
 }
