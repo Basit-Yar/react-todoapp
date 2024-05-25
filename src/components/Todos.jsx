@@ -6,8 +6,8 @@ export default function Todos({ todo }) {
     const { updateTodo, deleteTodo, toggleCompleteTodo } = useContext(TodoContext)
 
     const [edittedTodoTask, setEdittedTodoTask] = useState(todo.task);
-    const [isEditAble, setIsEditAble] = useState(false);
     const [isTaskCompleted, setIsTaskCompleted] = useState(todo.isCompleted);
+    const [isEditAble, setIsEditAble] = useState(false);
 
     const trashTodo = () => {
         deleteTodo(todo.id);
