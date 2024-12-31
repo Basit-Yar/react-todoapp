@@ -17,16 +17,16 @@ export default function DeleteModal() {
 
                 <div className="w-full flex justify-around my-5">
                     <button
-                        className="px-4 py-1 rounded-lg shadow-md shadow-black bg-red-600"
-                        onClick={() => confirmDeleteInfo(true)}
-                    >
-                        Delete
-                    </button>
-                    <button
                         className="px-4 py-1 rounded-lg shadow-md shadow-black bg-transparent border border-black"
                         onClick={() => confirmDeleteInfo(false)}
                     >
                         Cancel
+                    </button>
+                    <button
+                        className="px-4 py-1 rounded-lg shadow-md shadow-black bg-red-600"
+                        onClick={() => confirmDeleteInfo(true)}
+                    >
+                        Delete
                     </button>
                 </div>
 
